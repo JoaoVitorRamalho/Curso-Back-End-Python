@@ -6,4 +6,4 @@ z = x + y
 print (z)
 idade=12
 nome='Karla'
-print('Olá {}, você tem {} anos?'.format(nome,idade))
+print(f'Olá {nome}, você tem {idade} anos?')
