@@ -68,3 +68,35 @@ print(f'{media(9,8,7,6,5):.2f}')
 def med(a,b):
     return soma(a,b) / 2
 print(med(3,5))
+
+def contador(* num):
+    tam = len(num)
+    print(f'Foram recebidos os valores {num} e são ao todo {tam} números')
+
+contador(1,3,4,6,7,8,9)
+
+def dados(**kwargs):
+    print('Dados digitados:' )
+    for c,v in kwargs.items():
+        print(f'{c}: {v}')
+
+dados(nome='Ana',idade=23,cidade='SJE')
+dados(produto='notebook',preco=2500)
+
+def exibirMenu():
+    print('''Menu do IVAN
+    0 - Sair
+    1 - Somar''')
+    op = int(input('Escolha uma opção: '))
+    return op
+while True:
+    opcao = exibirMenu()
+    match opcao:
+        case 0:
+            print('Saindo do programa...')
+            break
+        case 1:
+            a = int(input('A: '))
+            b = int(input('B: '))
+            print(soma(a,b))
+

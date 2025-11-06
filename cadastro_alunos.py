@@ -1,3 +1,4 @@
+#Nome do aluno: João Vítor Ramalho Gonçalves
 alunos = []
 def menu():
     print('\n===== MENU PRINCIPAL =====')
@@ -11,7 +12,7 @@ def menu():
 def cadastrar_aluno():
     aluno = {}
     print('Cadastro do aluno(a)')
-    aluno['nome'] = input('Digite o nome: ')
+    aluno['nome'] = input('Digite o nome: ').strip()
     while True: 
         try:
             aluno['idade'] = int(input('Digite a idade: '))
@@ -22,7 +23,7 @@ def cadastrar_aluno():
         except ValueError:
             print('Erro, por favor digite um número inteiro no campo idade!')
         
-    aluno['curso'] = input('Digite o curso: ')
+    aluno['curso'] = input('Digite o curso: ').strip()
     notas = []
     for c in range(3):
         while True:
@@ -41,7 +42,6 @@ def cadastrar_aluno():
     return aluno
 
 def listar_alunos():
-    global alunos
     if len(alunos) > 0:
         for i,aluno in enumerate(alunos):
             print(f'{i+1}. {aluno["nome"]} - {aluno["idade"]} anos - Curso: {aluno["curso"]} - Média: {aluno["media"]}')
@@ -49,25 +49,15 @@ def listar_alunos():
         print('Nenhum aluno cadastrado.')
 
 def exibir_estatisticas():
-    global alunos
-    maiorMedia = menorMedia = mediaTurma = 0
-    for aluno in alunos:
-        if menorMedia == 0 and maiorMedia == 0:
-            menorMedia = aluno['media']
-            maiorMedia = aluno['media']
-        if aluno['media'] < menorMedia:
-            menorMedia = aluno['media']
-        if aluno['media'] > maiorMedia:
-            maiorMedia = aluno['media']
-        mediaTurma += aluno['media']
-    mediaTurma /= len(alunos)
+    menorMedia = min(aluno['media'] for aluno in alunos)
+    maiorMedia = max(aluno['media'] for aluno in alunos)
+    mediaTurma = sum(aluno['media'] for aluno in alunos) / len(alunos)
     print(f'Total de alunos: {len(alunos)}')
     print(f'Média geral da turma: {mediaTurma:.2f}')
     print(f'Melhor média: {maiorMedia}')
     print(f'Pior média: {menorMedia}')
 
 def buscar_aluno(nome):
-    global alunos
     for aluno in alunos:
         if aluno['nome'].lower() == nome.lower():
             for c, i in aluno.items():
@@ -77,7 +67,6 @@ def buscar_aluno(nome):
         print('Aluno não encontrado')               
 
 def excluir_aluno(nome):
-    global alunos
     for aluno in alunos:
         if aluno['nome'].lower() == nome.lower():
             alunos.remove(aluno)
@@ -98,10 +87,10 @@ while True:
             case 3:
                 exibir_estatisticas()
             case 4:
-                alunoBuscar = input('Digite o nome do aluno que você quer buscar: ')
+                alunoBuscar = input('Digite o nome do aluno que você quer buscar: ').strip()
                 buscar_aluno(alunoBuscar)
             case 5:
-                alunoExcluir = input('Digite o nome do aluno que você quer excluir: ')
+                alunoExcluir = input('Digite o nome do aluno que você quer excluir: ').strip()
                 excluir_aluno(alunoExcluir)
             case 0:
                 print('Saindo do sistema... Até logo!')
@@ -110,3 +99,5 @@ while True:
                 print('Opção inválida! Digite novamente')
     except ValueError:
             print('Erro, por favor digite um número inteiro no campo opção!')
+
+#Nome do aluno: João Vítor Ramalho Gonçalves
